@@ -12,6 +12,8 @@
 // Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 // Accepted
 
+// Kadane's Algorithm
+
 var maxProduct = function(nums) {
   let maxSoFar = nums[0];
   let minSoFar = nums[0];
