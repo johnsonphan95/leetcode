@@ -29,22 +29,21 @@ LRUCache.prototype.get = function(key) {
 */
 LRUCache.prototype.put = function(key, value) {
   if (this.cache[key] !== undefined) {
-      this.cache[key].val = value;
-      this.ll.moveToFront(this.cache[key]);
-      return;
-  }
-  
-  const node = new Node(key, value);
-  
-  if (this.size < this.capacity) {
-      this.size++
+    this.cache[key].val = value;
+    this.ll.moveToFront(this.cache[key]);
+    // return;
+  } else if (this.size < this.capacity) {
+      const node = new Node(key, value);
+      this.ll.insert(node);
+      this.cache[key] = node;
+      this.size++;
   } else {
       const remove = this.ll.remove();
       delete this.cache[remove];
+      const node = new Node(key, value);
+      this.ll.insert(node);
+      this.cache[key] = node;
   }
-  
-  this.ll.insert(node);
-  this.cache[key] = node;
 };
 
 /** 
