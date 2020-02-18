@@ -5,33 +5,58 @@ class MinHeap {
 
   buildHeap(array) {
     // Write your code here.
-    const firstParentIdx = Math.floor((array.length - 2) / 2);
-    for (let currentIdx = firstParentIdx; currentIdx >= 0; currentIdx--) {
-      this.siftDown(currentIdx, array.length - 1, array);
+    // const firstParentIdx = Math.floor((array.length - 2) / 2);
+    // for (let currentIdx = firstParentIdx; currentIdx >= 0; currentIdx--) {
+    //   this.siftDown(currentIdx, array.length - 1, array);
+    // }
+    // return array;
+    for (let i = Math.floor((array.length - 2) / 2); i >= 0; i--) {
+      this.siftDown(i, array.length, array);
     }
+
     return array;
   }
 
   siftDown(currentIdx, endIdx, heap) {
-    // Write your code here.
-    let leftChildIdx = currentIdx * 2 + 1;
-    while (leftChildIdx < endIdx) {
-      const rightChildIdx =
-        currentIdx * 2 + 2 <= endIdx ? currentIdx * 2 + 2 : -1;
-      let idxToSwap;
-      if (rightChildIdx !== -1 && heap[rightChildIdx] < heap[leftChildIdx]) {
-        idxToSwap = rightChildIdx;
-      } else {
-        idxToSwap = leftChildIdx;
-      }
-      if (heap[idxToSwap] < heap[currentIdx]) {
-        this.swap(currentIdx, idxToSwap, heap);
-        currentIdx = idxToSwap;
-        leftChildIdx = currentIdx * 2 + 1;
-      } else {
-        return;
-      }
+    // let leftChildIdx = currentIdx * 2 + 1;
+    // while (leftChildIdx < endIdx) {
+    //   const rightChildIdx =
+    //     currentIdx * 2 + 2 <= endIdx ? currentIdx * 2 + 2 : -1;
+    //   let idxToSwap;
+    //   if (rightChildIdx !== -1 && heap[rightChildIdx] < heap[leftChildIdx]) {
+    //     idxToSwap = rightChildIdx;
+    //   } else {
+    //     idxToSwap = leftChildIdx;
+    //   }
+    //   if (heap[idxToSwap] < heap[currentIdx]) {
+    //     this.swap(currentIdx, idxToSwap, heap);
+    //     currentIdx = idxToSwap;
+    //     leftChildIdx = currentIdx * 2 + 1;
+    //   } else {
+    //     return;
+    //   }
+    // }
+
+    let leftIdx = currentIdx * 2 + 1; 
+    let rightIdx = currentIdx * 2 + 2; 
+    let leftVal = heap[leftIdx];
+    let rightVal = heap[rightIdx];
+    let currVal = heap[currentIdx];
+
+    if (leftIdx >= endIdx) leftVal = Infinity; 
+    if (rightIdx >= endIdx) rightVal = Infinity; 
+
+    if (currVal < leftVal && currVal < rightVal) return;
+    
+    let swapIdx;
+    if (leftVal < rightVal) {
+      swapIdx = leftIdx;
+    } else {
+      swapIdx = rightIdx;
     }
+
+    this.swap(currentIdx, swapIdx, heap);
+    this.siftDown(swapIdx, endIdx, heap)
   }
 
   siftUp(currentIdx, heap) {
@@ -69,3 +94,5 @@ class MinHeap {
     heap[i] = temp;
   }
 }
+
+console.log(new MinHeap([0, 4, 3, 1, 6, 4, 2, 7, 8, 5]));
