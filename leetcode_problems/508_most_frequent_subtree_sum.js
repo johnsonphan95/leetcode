@@ -30,13 +30,12 @@ var findFrequentTreeSum = function(root) {
   return res;
 
   function findSum(root) {
-      var left, right;
       if (!root) return 0;
 
-      left = findSum(root.left);
-      right = findSum(root.right);
+      let left = findSum(root.left);
+      let right = findSum(root.right);
 
-      sum = left + right + root.val;
+      let sum = left + right + root.val;
       root.val = sum;
       hash[sum] = (hash[sum] || 0) + 1;
       max = Math.max(max, hash[sum]);
