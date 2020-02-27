@@ -38,17 +38,21 @@ var splitIntoFibonacci = function(S) {
   let result = [];
   
   var dfs = function(res, index) {
-      if(index ===len && res.length > 2){
+
+      // case where fibonacci results exists and we have went through the whole string
+      if(index === len && res.length > 2){
           result = [...res];
           return;
       }
       
+      // dfs through every number from i to len, if current sum (num) is equal to sum of 
+      // last two numbers in res we continue DFS until we either hit the end or return nothing
       let num = 0;
-      for(let i=index;i<len;i++) { 
+      for(let i = index; i < len; i++) { 
           num = num * 10 + parseInt(S.charAt(i));
-          if(S.charAt(index) == "0" && i > index) return;
-          if(num > Math.pow(2,31) - 1) return;
-          if(res.length < 2 || num === (res[res.length-1] + res[res.length-2])) {
+          if (S.charAt(index) == "0" && i > index) return;
+          if (num > Math.pow(2,31) - 1) return;
+          if (res.length < 2 || num === (res[res.length-1] + res[res.length-2])) {
               res.push(num);
               dfs(res, i + 1);
               res.pop();
