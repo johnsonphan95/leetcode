@@ -22,3 +22,32 @@ var minSubArrayLen = function(s, nums) {
   }
   return ans === Infinity ? 0 : ans; 
 };
+
+// Olog(n) time O(1) space
+var minSubArrayLen = function(s, nums) {
+  let i = 1; 
+  let j = nums.length; 
+  let min = 0; 
+  while (i <= j) {
+      let mid = Math.floor((i + j) / 2); 
+      if (windowExist(mid, nums, s)) {
+          j = mid - 1; 
+          min = mid; 
+      } else {
+          i = mid + 1
+      }
+  }
+  return min; 
+};
+
+var windowExist = function(size, nums, s) {
+  let sum = 0; 
+  for (let i = 0; i < nums.length; i++) {
+      if (i >= size) {
+          sum -= nums[i - size];
+      }
+      sum += nums[i];
+      if (sum >= s) return true;
+  }
+  return false;
+}
