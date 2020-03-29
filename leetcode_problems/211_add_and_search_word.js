@@ -24,3 +24,16 @@ var TrieNode = function() {
 var WordDictionary = function() {
   this.root = new TrieNode();
 };
+
+WordDictionary.prototype.addWord = function(word) {
+  var current = this.root;
+  
+  for (let i = 0; i < word.length; i++) {
+      if (!(word[i] in current.children)) {
+          current.children[word[i]] = new TrieNode();
+      }
+      current = current.children[word[i]];
+  }
+  
+  current.end = true;
+};
