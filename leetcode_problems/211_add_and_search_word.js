@@ -37,3 +37,29 @@ WordDictionary.prototype.addWord = function(word) {
   
   current.end = true;
 };
+
+WordDictionary.prototype.search = function(word) {
+  const search = function(curr, level) {
+      if (!curr || word.length == level && !curr.end) {
+          return false;
+      }
+      
+      if (curr.end && word.length == level) {
+          return true;
+      }
+      
+      if (word[level] == '.') {
+          for (let i = 0; i < 26; i++) {
+              const char = String.fromCharCode(97 + i);
+              
+              if (search(curr.children[char], level + 1)) {
+                  return true;
+              }
+          }
+          return false;
+      }
+      return search(curr.children[word[level]], level + 1)
+  }
+  
+  return search(this.root, 0)
+};
