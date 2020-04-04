@@ -11,8 +11,8 @@
 //              Since the researcher has 3 papers with at least 3 citations each and the remaining 
 //              two with no more than 3 citations each, her h-index is 3.
 
-// function hIndex(citations) {
-//   citations.sort((a, b) => b - a);
+function hIndex(citations) {
+  citations.sort((a, b) => b - a);
   
   let h = 0;
   for (let i = 0; i < citations.length; i++) {
