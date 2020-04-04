@@ -15,20 +15,16 @@
 // Kadane's Algorithm
 
 var maxProduct = function(nums) {
-  let maxSoFar = nums[0];
-  let minSoFar = nums[0];
-  let res = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    maxSoFar *= nums[i];
-    minSoFar *= nums[i];
-    if (nums[i] < 0) {
-      const temp = maxSoFar;
-      maxSoFar = minSoFar;
-      minSoFar = temp;
-    }
-    maxSoFar = Math.max(maxSoFar, nums[i]);
-    minSoFar = Math.min(minSoFar, nums[i]);
-    res = Math.max(res, maxSoFar);
+  let min = 1; 
+  let max = 1; 
+  let ans = -Infinity; 
+  
+  for (let i = 0; i < nums.length; i++) {
+      let prevMin = min; 
+      min = Math.min(nums[i], nums[i] * prevMin, nums[i] * max);
+      max = Math.max(nums[i], nums[i] * prevMin, nums[i] * max);
+      ans = Math.max(ans, max);
   }
-  return res;
+  
+  return ans;
 };
