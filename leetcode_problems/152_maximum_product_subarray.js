@@ -14,6 +14,7 @@
 
 // Kadane's Algorithm
 
+// O(N) time O(1) space
 var maxProduct = function(nums) {
   let min = 1; 
   let max = 1; 
