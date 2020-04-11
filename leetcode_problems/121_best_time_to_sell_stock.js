@@ -16,6 +16,7 @@
 // Output: 0
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
+// O(N) time O(1) space
 const maxProfit = prices => {
   let min = prices[0];
   let result = 0;
