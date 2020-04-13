@@ -1,5 +1,6 @@
 // Given a string, find the length of the longest substring without repeating characters.
 
+// O(N) time O(N) space
 var lengthOfLongestSubstring = function(s) {
     let max = 0; 
     let start = 0; 
