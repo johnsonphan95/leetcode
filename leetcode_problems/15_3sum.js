@@ -5,6 +5,7 @@
 
 // The solution set must not contain duplicate triplets.
 
+//O(N^2) time O(N)space
 var threeSum = (nums) => {
     nums.sort((a, b) => a - b);
     
