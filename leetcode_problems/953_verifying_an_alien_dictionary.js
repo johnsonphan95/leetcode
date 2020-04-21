@@ -32,6 +32,6 @@ var isAlienSorted = function(words, order) {
   return true;
 };
 
-var compare = function(a,b,order){
+var compare = function(a,b,order) {
   return (order.indexOf(a) - order.indexOf(b) ) > 0;
 }
