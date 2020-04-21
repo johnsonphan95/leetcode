@@ -16,11 +16,11 @@
 // Explanation: As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.
 
 var isAlienSorted = function(words, order) {
-  for(let i = 0; i < words.length - 1; i++){
+  for (let i = 0; i < words.length - 1; i++) {
       let a = words[i];
       let b = words[i + 1];
       
-      for(let j = 0 ; j < a.length; j++) {
+      for (let j = 0 ; j < a.length; j++) {
           if (j >= b.length) return false;
           let ca = a.charAt(j);
           let cb = b.charAt(j);
