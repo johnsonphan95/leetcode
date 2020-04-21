@@ -15,30 +15,30 @@
 // which are both strictly increasing.
 
 var minSwap = function(A, B) {
-  let swap=1;
-  let unswap=0;
+  let swap = 1;
+  let unswap = 0;
   
-  for(let i=A.length-2;i>=0;i--){
-      let temp=swap;
+  for(let i = A.length - 2; i >= 0; i--) {
+      let temp = swap;
       // Case 1 a[i] < a[i + 1] && a[i] < b[i + 1]
       // && b[i] < b[i + 1] && b[i] < a[i + 1]
       // i.e. strictly increasing
-      if(A[i]<A[i+1]&&A[i]<B[i+1]&&B[i]<A[i+1]&&B[i]<B[i+1]){            
-          swap=1+Math.min(swap,unswap);
-          unswap=0+Math.min(temp,unswap);
+      if (A[i] < A[i+1] && A[i] < B[i+1] && B[i] < A[i+1] && B[i] < B[i+1]) {            
+          swap = 1 + Math.min(swap,unswap);
+          unswap = 0 + Math.min(temp,unswap);
           continue;
       }
       // Case 2 a >= a[i + 1] || b > b[i + 1]
-      if(A[i]>=A[i+1]||B[i]>=B[i+1]){
-          swap=1+unswap;
-          unswap=0+temp;
+      if(A[i] >= A[i+1] || B[i] >= B[i+1]) {
+          swap = 1 + unswap;
+          unswap = 0 + temp;
           continue;
       }
-      // Case 3 a >= b[i + 1] ||b >= a[i + 1]
+      // Case 3 a >= b[i + 1] || b >= a[i + 1]
       // either a or b violates other's sequence
-      if(A[i]>=B[i+1]||B[i]>=A[i+1]){
-          swap=1+swap;
-          unswap=0+unswap;
+      if (A[i] >= B[i+1] || B[i] >= A[i+1]) {
+          swap = 1 + swap;
+          unswap = 0 + unswap;
           continue;
       }
       
